@@ -276,8 +276,8 @@
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>Rest</tag>
         <tag>API</tag>
+        <tag>Rest</tag>
         <tag>MD5</tag>
       </tags>
   </entry>
@@ -290,8 +290,8 @@
         <category>实习</category>
       </categories>
       <tags>
-        <tag>API</tag>
         <tag>持续集成</tag>
+        <tag>API</tag>
         <tag>Jenkins</tag>
       </tags>
   </entry>
