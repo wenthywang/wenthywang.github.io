@@ -86,7 +86,7 @@
 <meta name="description" content="stay hungry,stay foolish">
 <meta property="og:type" content="website">
 <meta property="og:title" content="wenthywang">
-<meta property="og:url" content="https://wenthywang.cn/tags/linux/index.html">
+<meta property="og:url" content="https://wenthywang.cn/tags/Linux/index.html">
 <meta property="og:site_name" content="wenthywang">
 <meta property="og:description" content="stay hungry,stay foolish">
 <meta property="og:locale" content="zh-Hans">
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://wenthywang.cn/tags/linux/"/>
+  <link rel="canonical" href="https://wenthywang.cn/tags/Linux/"/>
 
 
 
 
 
-  <title>标签: linux | wenthywang</title>
+  <title>标签: Linux | wenthywang</title>
   
 
 
@@ -302,7 +302,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h2>linux<small>标签</small>
+        <h2>Linux<small>标签</small>
         </h2>
       </div>
 
@@ -314,9 +314,9 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/2017/05/04/elasticsearch_4/" itemprop="url">
+            <a class="post-title-link" href="/2018/04/08/Centos7安装Redis/" itemprop="url">
               
-                <span itemprop="name">linux下elasticsearch插件安装笔记(head,sql)</span>
+                <span itemprop="name">Centos7安装Redis</span>
               
             </a>
         
@@ -324,9 +324,93 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-04T15:43:41+08:00"
-              content="2017-05-04" >
-          05-04
+              datetime="2018-04-08T16:30:41+08:00"
+              content="2018-04-08" >
+          04-08
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h3 class="post-title">
+        
+            <a class="post-title-link" href="/2018/04/08/Centos7安装JDK1.8/" itemprop="url">
+              
+                <span itemprop="name">Centos7安装JDK1.8</span>
+              
+            </a>
+        
+      </h3>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-04-08T09:30:41+08:00"
+              content="2018-04-08" >
+          04-08
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h3 class="post-title">
+        
+            <a class="post-title-link" href="/2018/03/27/Centos7安装MySQL5.7/" itemprop="url">
+              
+                <span itemprop="name">Centos7安装MySQL5.7</span>
+              
+            </a>
+        
+      </h3>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-03-27T09:30:41+08:00"
+              content="2018-03-27" >
+          03-27
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h3 class="post-title">
+        
+            <a class="post-title-link" href="/2018/03/07/hexo_deploy/" itemprop="url">
+              
+                <span itemprop="name">我的hexo部署到腾讯云服务器</span>
+              
+            </a>
+        
+      </h3>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-03-07T18:59:41+08:00"
+              content="2018-03-07" >
+          03-07
         </time>
       </div>
 
@@ -1066,83 +1150,6 @@
             counter.save(null, {
               success: function(counter) {
                 var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-
-  
-  
-
-  
-
-  
-
-  
-
-</body>
-</html>
-(url));
                 $element.find('.leancloud-visitors-count').text(counter.get('time'));
               },
               error: function(counter, error) {
