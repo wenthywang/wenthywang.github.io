@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[IDEA 安装 JRebel]]></title>
     <url>%2F2018%2F07%2F05%2FIDEA_Jrebel%2F</url>
-    <content type="text"><![CDATA[科普JRebel IDEA上原生是不支持热部署的，一般更新了 Java 文件后要手动重启 Tomcat 服务器，才能生效，浪费不少生命啊。目前对于idea热部署最好的解决方案就是安装JRebel插件，这样不论是更新 class 类还是更新 Spring 配置文件都能做到立马生效，大大提高开发效率。进一步说，就是Jrebel让开发更实在，随时修改，随时查看修改结果。目前测试，配置文件和类文件都能实现热部署，强烈推荐。 下载并安装 插件安装跟Eclipse安装类似，提供了两种安装方法。 在线安装打开IDEA,Files-&gt;Settings-&gt;搜索框填Plugins 选择Browser repositories ,然后搜索框输入Jrebel，界面显示有且只有一个，然后点安装即可。 离线安装找到最新版本，一般来说，我都会使用最新版本。 https://plugins.jetbrains.com/plugin/4441-jrebel-for-intellij 下载下来是一个zip包，然后打开IDEA ,Files-&gt;Settins-&gt;搜索框填Plugins 选择Install Plugin from disk 选择刚才下载好的zip包 无论是第一种方式还是第二种方式安装，都必须重新启动IDEA才能生效，毕竟这是插件。一般来说推荐使用在线安装，但是一般来说在线安装基本上很难，这个跟网络有关。所以当在线安装不行的话，就离线安装。 激活打开IDEA,Files-&gt;Settings-&gt;Jrebel右面会显示当前是否是已激活状态，现需要激活。使用的是lincense Server,点击active now 然后在lincenseServer上添加地址： http://139.199.89.239:1008/88414687-3b91-4286-89ba-2dc813b107ce 邮箱随便填，填完就点active即可。一般来说都能激活的。不能激活的话，要重新找server了。 修改配置修改IDEA 运行时编译，默认是不选择的。 Ctrl+Shift+a 填Registry 勾选complier.*.app.runninng JRebel插件的配置使用默认配置即可 运行Springboot程序 运行前需要指定部署的是哪个模块，需要配置运行的模块。 在main方法右键Run的时候发现有Run with JRebel，必然是选择这个了。然后其他的配置 看个人使用配置了。]]></content>
+    <content type="text"><![CDATA[科普JRebel IDEA上原生是不支持热部署的，一般更新了 Java 文件后要手动重启 Tomcat 服务器，才能生效，浪费不少生命啊。目前对于idea热部署最好的解决方案就是安装JRebel插件，这样不论是更新 class 类还是更新 Spring 配置文件都能做到立马生效，大大提高开发效率。进一步说，就是Jrebel让开发更实在，随时修改，随时查看修改结果。目前测试，配置文件和类文件都能实现热部署，强烈推荐。 下载并安装 插件安装跟Eclipse安装类似，提供了两种安装方法。 在线安装 打开IDEA,Files-&gt;Settings-&gt;搜索框填Plugins 选择Browser repositories ,然后搜索框输入Jrebel，界面显示有且只有一个，然后点安装即可。 离线安装找到最新版本，一般来说，我都会使用最新版本。 https://plugins.jetbrains.com/plugin/4441-jrebel-for-intellij 下载下来是一个zip包，然后打开IDEA ,Files-&gt;Settins-&gt;搜索框填Plugins 选择Install Plugin from disk 选择刚才下载好的zip包 生效 无论是第一种方式还是第二种方式安装，都必须重新启动IDEA才能生效，毕竟这是插件。 一般来说推荐使用在线安装，但是一般来说在线安装基本上很难，这个跟网络有关。 所以当在线安装不行的话，就离线安装。 激活打开IDEA,Files-&gt;Settings-&gt;Jrebel右面会显示当前是否是已激活状态，现需要激活。使用的是lincense Server,点击active now 然后在lincenseServer上添加地址： http://139.199.89.239:1008/88414687-3b91-4286-89ba-2dc813b107ce 邮箱随便填，填完就点active即可。一般来说都能激活的。不能激活的话，要重新找server了。 修改配置修改IDEA 运行时编译，默认是不选择的。 Ctrl+Shift+a 填Registry 勾选complier.*.app.runninng JRebel插件的配置使用默认配置即可 运行Springboot程序 运行前需要指定部署的是哪个模块，需要配置运行的模块。 在main方法右键Run的时候发现有Run with JRebel，必然是选择这个了。然后其他的配置 看个人使用配置了。]]></content>
       <categories>
         <category>笔记</category>
       </categories>
@@ -318,13 +318,13 @@
     <content type="text"><![CDATA[王文辉 一个对技术充满好奇的小伙子 涉世未深，有着洞察世界的眼 涉猎了很多程序相关的书籍，喜欢一个人做研究与思考 but…..我更想和别人分享和交流想法…..特别是你…..come on 目前Status 在一家初创公司 做Java开发 每一次完成公司的需求都会有很大的成就感 感觉在学习 不是在工作 Working is Study Working is Study Study is working 过去学习过C++,C#,汇编语言，外挂制作，反编译等。曾经对技术的热爱，你无法想象 。 未来better than present]]></content>
   </entry>
   <entry>
-    <title><![CDATA[tags]]></title>
-    <url>%2Ftags%2Findex.html</url>
+    <title><![CDATA[分类]]></title>
+    <url>%2Fcategories%2Findex.html</url>
     <content type="text"></content>
   </entry>
   <entry>
-    <title><![CDATA[分类]]></title>
-    <url>%2Fcategories%2Findex.html</url>
+    <title><![CDATA[tags]]></title>
+    <url>%2Ftags%2Findex.html</url>
     <content type="text"></content>
   </entry>
 </search>
