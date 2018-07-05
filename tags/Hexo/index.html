@@ -86,7 +86,7 @@
 <meta name="description" content="stay hungry,stay foolish">
 <meta property="og:type" content="website">
 <meta property="og:title" content="wenthywang">
-<meta property="og:url" content="https://wenthywang.cn/tags/Hexo/index.html">
+<meta property="og:url" content="https://wenthywang.cn/tags/hexo/index.html">
 <meta property="og:site_name" content="wenthywang">
 <meta property="og:description" content="stay hungry,stay foolish">
 <meta property="og:locale" content="zh-Hans">
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://wenthywang.cn/tags/Hexo/"/>
+  <link rel="canonical" href="https://wenthywang.cn/tags/hexo/"/>
 
 
 
 
 
-  <title>标签: Hexo | wenthywang</title>
+  <title>标签: hexo | wenthywang</title>
   
 
 
@@ -302,7 +302,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h2>Hexo<small>标签</small>
+        <h2>hexo<small>标签</small>
         </h2>
       </div>
 
@@ -314,37 +314,9 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/2018/03/07/hexo_deploy/" itemprop="url">
+            <a class="post-title-link" href="/2016/11/18/next/" itemprop="url">
               
-                <span itemprop="name">我的hexo部署到腾讯云服务器</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-07T18:59:41+08:00"
-              content="2018-03-07" >
-          03-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/11/Hexo_blog/" itemprop="url">
-              
-                <span itemprop="name">使用Hexo+Git+Nodejs搭建个人博客</span>
+                <span itemprop="name">next部署git页面资源加载404</span>
               
             </a>
         
@@ -352,9 +324,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-11T17:34:41+08:00"
-              content="2016-09-11" >
-          09-11
+              datetime="2016-11-18T15:44:41+08:00"
+              content="2016-11-18" >
+          11-18
         </time>
       </div>
 
@@ -1130,6 +1102,47 @@
 
     $(function() {
       var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+d("Counter");
       if ($('.leancloud_visitors').length == 1) {
         addCount(Counter);
       } else if ($('.post-title-link').length > 1) {
