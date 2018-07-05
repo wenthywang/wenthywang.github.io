@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[IDEA 安装 JRebel]]></title>
+    <url>%2F2018%2F07%2F05%2FIDEA_Jrebel%2F</url>
+    <content type="text"><![CDATA[科普JRebel下载并安装修改配置运行springboot（在JRebel环境下）]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>IDEA</tag>
+        <tag>JRebel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Centos7安装Redis]]></title>
     <url>%2F2018%2F04%2F08%2FCentos7%E5%AE%89%E8%A3%85Redis%2F</url>
     <content type="text"><![CDATA[安装环境：CentOS7 64位、Redis-4.0.8 下载安装包 切换到安装目录cd /usr/local/ 添加安装目录mkdir redis 切换安装目录cd redis 下载安装包wget http://download.redis.io/releases/redis-4.0.8.tar.gz 解压tar xzf redis-4.0.8.tar.gz 安装gcc如果不安装gcc 编译redis会报错yum install gcc 编译安装cd redis/redis-4.0.8/make MALLOC=libcRedis并没有自己实现内存池，没有在标准的系统内存分配器上再加上自己的东西。所以需要配置内存分配。不执行以上命令编译会报下面的错编译rediscd src &amp;&amp; make install 启动redis./redis-server如上图：redis启动成功，但是这种启动方式需要一直打开窗口，不能进行其他操作，不太方便。 以后台进程方式启动redis 修改redis.conf文件vim /usr/local/redis/redis-4.0.8/redis.conf将daemonize no 改为daemonize yes 指定redis.conf启动./redis-server /usr/local/redis/redis-4.0.8/redis.conf设置redis 开机启动 在/etc目录下新建redis目录mkdir redis 复制redis 配置文件cp /usr/local/redis/redis-4.0.8/redis.conf /etc/redis/6379.conf 复制redis 脚本到启动脚本目录中cp /usr/local/redis/redis-4.0.8/utils/redis_init_script /etc/init.d/redisd 切换到自启目录cd /etc/init.dchkconfig redisd on会显示service redisd does not support chkconfig看结果是redisd不支持chkconfig 解决方法：使用vim编辑redisd文件，在第一行加入如下两行注释，保存退出# chkconfig: 2345 90 10# description: Redis is a persistent key-value database注释的意思是，redis服务必须在运行级2，3，4，5下被启动或关闭，启动的优先级是90，关闭的优先级是10。再次执行开机自启命令，成功chkconfig redisd on 服务启动现在可以直接已服务的形式启动和关闭redis了启动：service redisd start关闭：service redisd stop 过程中的问题service redisd stop出现以下问题 Stopping …(error) NOAUTH Authentication required. 解决方法：因为我在配置redis 时候 配置了密码连接 所以 出现上面的问题,如果不配置 则不需要以下配置。修改启动脚本vim /etc/init.d/redisd增加密码设置变量,密码是你设置的redis密码 service启动或者关闭时出现以下问题 /var/run/redis_6379.pid exists, process is already running or crashed 解决方法：出现这个问题是因为redis 关闭不正常，导致文件没有被删除掉。执行以下命令即可删除rm -rf /var/run/redis_6379.pid]]></content>
