@@ -130,8 +130,8 @@
         <category>分布式</category>
       </categories>
       <tags>
-        <tag>分布式</tag>
         <tag>elasticsearch-插件</tag>
+        <tag>分布式</tag>
       </tags>
   </entry>
   <entry>
@@ -181,8 +181,8 @@
         <category>分布式</category>
       </categories>
       <tags>
-        <tag>elasticsearch</tag>
         <tag>分布式</tag>
+        <tag>elasticsearch</tag>
       </tags>
   </entry>
   <entry>
@@ -318,13 +318,13 @@
     <content type="text"><![CDATA[王文辉 一个对技术充满好奇的小伙子 涉世未深，有着洞察世界的眼 涉猎了很多程序相关的书籍，喜欢一个人做研究与思考 but…..我更想和别人分享和交流想法…..特别是你…..come on 目前Status 在一家初创公司 做Java开发 每一次完成公司的需求都会有很大的成就感 感觉在学习 不是在工作 Working is Study Working is Study Study is working 过去学习过C++,C#,汇编语言，外挂制作，反编译等。曾经对技术的热爱，你无法想象 。 未来better than present]]></content>
   </entry>
   <entry>
-    <title><![CDATA[tags]]></title>
-    <url>%2Ftags%2Findex.html</url>
+    <title><![CDATA[分类]]></title>
+    <url>%2Fcategories%2Findex.html</url>
     <content type="text"></content>
   </entry>
   <entry>
-    <title><![CDATA[分类]]></title>
-    <url>%2Fcategories%2Findex.html</url>
+    <title><![CDATA[tags]]></title>
+    <url>%2Ftags%2Findex.html</url>
     <content type="text"></content>
   </entry>
 </search>
