@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="执行命令docker run  –restart=always  -p 80:80 -p 443:443 –name nginx -v /docker/nginx/log/:/var/log/nginx -v /docker/nginx/conf/:/etc/nginx/conf.d/ -v /usr/local/wwh/hexo:/usr/local/wwh/hexo -v /docker/n">
+<meta name="description" content="执行命令1docker run  --restart=always  -p 80:80 -p 443:443 --name nginx -v /docker/nginx/log/:/var/log/nginx -v /docker/nginx/conf/:/etc/nginx/conf.d/ -v /usr/local/wwh/hexo:/usr/local/wwh/hexo -v /docke">
 <meta name="keywords" content="docker,nginx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker下安装nginx 并挂载博客目录">
 <meta property="og:url" content="https://wenthywang.cn/2018/10/05/docker_install_nginx/index.html">
 <meta property="og:site_name" content="wenthywang">
-<meta property="og:description" content="执行命令docker run  –restart=always  -p 80:80 -p 443:443 –name nginx -v /docker/nginx/log/:/var/log/nginx -v /docker/nginx/conf/:/etc/nginx/conf.d/ -v /usr/local/wwh/hexo:/usr/local/wwh/hexo -v /docker/n">
+<meta property="og:description" content="执行命令1docker run  --restart=always  -p 80:80 -p 443:443 --name nginx -v /docker/nginx/log/:/var/log/nginx -v /docker/nginx/conf/:/etc/nginx/conf.d/ -v /usr/local/wwh/hexo:/usr/local/wwh/hexo -v /docke">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-11T09:28:15.511Z">
+<meta property="og:updated_time" content="2018-10-11T09:30:48.349Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker下安装nginx 并挂载博客目录">
-<meta name="twitter:description" content="执行命令docker run  –restart=always  -p 80:80 -p 443:443 –name nginx -v /docker/nginx/log/:/var/log/nginx -v /docker/nginx/conf/:/etc/nginx/conf.d/ -v /usr/local/wwh/hexo:/usr/local/wwh/hexo -v /docker/n">
+<meta name="twitter:description" content="执行命令1docker run  --restart=always  -p 80:80 -p 443:443 --name nginx -v /docker/nginx/log/:/var/log/nginx -v /docker/nginx/conf/:/etc/nginx/conf.d/ -v /usr/local/wwh/hexo:/usr/local/wwh/hexo -v /docke">
 
 
 
@@ -422,7 +422,7 @@
 
       
         <hr>
-<h1 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a>执行命令</h1><p>docker run  –restart=always  -p 80:80 -p 443:443 –name nginx -v /docker/nginx/log/:/var/log/nginx -v /docker/nginx/conf/:/etc/nginx/conf.d/ -v /usr/local/wwh/hexo:/usr/local/wwh/hexo -v /docker/nginx/cert/:/etc/nginx/cert -d nginx</p>
+<h1 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a>执行命令</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run  --restart=always  -p 80:80 -p 443:443 --name nginx -v /docker/nginx/log/:/var/log/nginx -v /docker/nginx/conf/:/etc/nginx/conf.d/ -v /usr/local/wwh/hexo:/usr/local/wwh/hexo -v /docker/nginx/cert/:/etc/nginx/cert -d nginx</span><br></pre></td></tr></table></figure>
 <h2 id="nginx-配置"><a href="#nginx-配置" class="headerlink" title="nginx 配置"></a>nginx 配置</h2><p>在/docker/nginx/conf 下新增nginx.conf 配置文件</p>
 <p>内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"> server &#123;</span><br><span class="line">        listen       80 ;</span><br><span class="line">        server_name  wenthywang.cn;</span><br><span class="line">        rewrite     ^   https://$host$request_uri? permanent;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 443;</span><br><span class="line">    server_name wenthywang.cn;</span><br><span class="line">    ssl on;</span><br><span class="line">    root /usr/local/wwh/hexo;</span><br><span class="line">    ssl_certificate   cert/1_wenthywang.cn_bundle.crt;</span><br><span class="line">    ssl_certificate_key  cert/2_wenthywang.cn.key;</span><br><span class="line">    ssl_session_timeout 5m;</span><br><span class="line">    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">	location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|ico)$ &#123;</span><br><span class="line">      expires 30d;</span><br><span class="line">      access_log off;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">    location ~ .*\.(eot|ttf|otf|woff|svg)$ &#123;</span><br><span class="line">    expires 30d;</span><br><span class="line">    access_log off;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ .*\.(js|css)?$ &#123;</span><br><span class="line">    expires 7d;</span><br><span class="line">    access_log off;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_page 404 /404.html;</span><br><span class="line">            location = /40x.html &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_page 500 502 503 504 /50x.html;</span><br><span class="line">            location = /50x.html &#123;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="配置说明"><a href="#配置说明" class="headerlink" title="配置说明"></a>配置说明</h2><p>cert目录为https证书存放目录，使用的腾讯云的证书。80端口配置跳转为443端口，则访问80端口的时候 默认会跳转到443的链接。其他配置为缓存配置，以及一些静态资源配置。</p>
@@ -495,8 +495,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/05/docker_install/" rel="next" title="Centos 下安装docker">
-                <i class="fa fa-chevron-left"></i> Centos 下安装docker
+              <a href="/2018/10/05/docker_install_rabbitmq/" rel="next" title="docker 下部署rabbitmq">
+                <i class="fa fa-chevron-left"></i> docker 下部署rabbitmq
               </a>
             
           </div>
@@ -504,10 +504,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/05/docker_install_rabbitmq/" rel="prev" title="docker 下部署rabbitmq">
-                docker 下部署rabbitmq <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

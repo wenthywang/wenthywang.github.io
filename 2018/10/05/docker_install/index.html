@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="wenthywang">
 <meta property="og:description" content="docker 介绍 Docker 让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，便可以实现虚拟化。Docker改变了虚拟化的方式，使开发者可以直接将自己的成果放入Docker中进行管理。方便快捷已经是 Docker的最大优势，过去需要用数天乃至数周的    任务，在Docker容器的处理下，只需要数秒就能完成。  Web 应用的自动化打包和发">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-11T09:07:55.092Z">
+<meta property="og:updated_time" content="2018-10-11T09:31:29.533Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos 下安装docker">
 <meta name="twitter:description" content="docker 介绍 Docker 让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，便可以实现虚拟化。Docker改变了虚拟化的方式，使开发者可以直接将自己的成果放入Docker中进行管理。方便快捷已经是 Docker的最大优势，过去需要用数天乃至数周的    任务，在Docker容器的处理下，只需要数秒就能完成。  Web 应用的自动化打包和发">
@@ -430,14 +430,14 @@
 <li>在服务型环境中部署和调整数据库或其他的后台应用。   </li>
 </ul>
 </blockquote>
-<h1 id="安装说明"><a href="#安装说明" class="headerlink" title="安装说明"></a>安装说明</h1><p>  Docker 要求 CentOS 系统的内核版本高于 3.10 ，查看本页面的前提条件来验证你的CentOS 版本是否支持 Docker 。<br>  通过 uname -r 命令查看你当前的内核版本<br>  uname -r</p>
-<h1 id="使用-root-权限登录-Centos。确保-yum-包更新到最新。"><a href="#使用-root-权限登录-Centos。确保-yum-包更新到最新。" class="headerlink" title="使用 root 权限登录 Centos。确保 yum 包更新到最新。"></a>使用 root 权限登录 Centos。确保 yum 包更新到最新。</h1><p>yum update</p>
-<h2 id="卸载旧版本-如果安装过旧版本的话"><a href="#卸载旧版本-如果安装过旧版本的话" class="headerlink" title="卸载旧版本(如果安装过旧版本的话)"></a>卸载旧版本(如果安装过旧版本的话)</h2><p> yum remove docker  docker-common docker-selinux docker-engine</p>
-<h2 id="安装需要的软件包，-yum-util-提供yum-config-manager功能，另外两个是devicemapper驱动依赖的"><a href="#安装需要的软件包，-yum-util-提供yum-config-manager功能，另外两个是devicemapper驱动依赖的" class="headerlink" title="安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的"></a>安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的</h2><p>yum install -y yum-utils device-mapper-persistent-data lvm2</p>
-<h1 id="设置yum源"><a href="#设置yum源" class="headerlink" title="设置yum源"></a>设置yum源</h1><p> yum-config-manager –add-repo <a href="https://download.docker.com/linux/centos/docker-ce.repo" target="_blank" rel="noopener">https://download.docker.com/linux/centos/docker-ce.repo</a></p>
-<h1 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h1><p>yum install docker-ce</p>
-<h1 id="启动并加入开机启动"><a href="#启动并加入开机启动" class="headerlink" title="启动并加入开机启动"></a>启动并加入开机启动</h1><p>  systemctl start docker<br>  systemctl enable docker</p>
-<h1 id="验证安装是否成功-有client和service两部分表示docker安装启动都成功了"><a href="#验证安装是否成功-有client和service两部分表示docker安装启动都成功了" class="headerlink" title="验证安装是否成功(有client和service两部分表示docker安装启动都成功了)"></a>验证安装是否成功(有client和service两部分表示docker安装启动都成功了)</h1><p>docker version</p>
+<h1 id="安装说明"><a href="#安装说明" class="headerlink" title="安装说明"></a>安装说明</h1><p>  Docker 要求 CentOS 系统的内核版本高于 3.10 ，查看本页面的前提条件来验证你的CentOS 版本是否支持 Docker 。<br>  通过 uname -r 命令查看你当前的内核版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -r</span><br></pre></td></tr></table></figure></p>
+<h1 id="使用-root-权限登录-Centos。确保-yum-包更新到最新。"><a href="#使用-root-权限登录-Centos。确保-yum-包更新到最新。" class="headerlink" title="使用 root 权限登录 Centos。确保 yum 包更新到最新。"></a>使用 root 权限登录 Centos。确保 yum 包更新到最新。</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum update</span><br></pre></td></tr></table></figure>
+<h2 id="卸载旧版本-如果安装过旧版本的话"><a href="#卸载旧版本-如果安装过旧版本的话" class="headerlink" title="卸载旧版本(如果安装过旧版本的话)"></a>卸载旧版本(如果安装过旧版本的话)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum remove docker  docker-common docker-selinux docker-engine</span><br></pre></td></tr></table></figure>
+<h2 id="安装需要的软件包，-yum-util-提供yum-config-manager功能，另外两个是devicemapper驱动依赖的"><a href="#安装需要的软件包，-yum-util-提供yum-config-manager功能，另外两个是devicemapper驱动依赖的" class="headerlink" title="安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的"></a>安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br></pre></td></tr></table></figure>
+<h1 id="设置yum源"><a href="#设置yum源" class="headerlink" title="设置yum源"></a>设置yum源</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+<h1 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install docker-ce</span><br></pre></td></tr></table></figure>
+<h1 id="启动并加入开机启动"><a href="#启动并加入开机启动" class="headerlink" title="启动并加入开机启动"></a>启动并加入开机启动</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker</span><br><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
+<h1 id="验证安装是否成功-有client和service两部分表示docker安装启动都成功了"><a href="#验证安装是否成功-有client和service两部分表示docker安装启动都成功了" class="headerlink" title="验证安装是否成功(有client和service两部分表示docker安装启动都成功了)"></a>验证安装是否成功(有client和service两部分表示docker安装启动都成功了)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -515,8 +515,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/05/docker_install_nginx/" rel="prev" title="docker下安装nginx 并挂载博客目录">
-                docker下安装nginx 并挂载博客目录 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/05/docker_install_mysql/" rel="prev" title="docker下安装mysql8.0">
+                docker下安装mysql8.0 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

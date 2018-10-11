@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="docker mysql 运行命令docker run  -d -p 3306:3306  –restart=always  -v /docker/mysql/log/:/var/log/mysqld.log –privileged=true  -v /docker/mysql/conf/:/etc/mysql/conf.d -v /docker/mysql/data/:/var/lib/mys">
+<meta name="description" content="docker mysql 运行命令1docker run  -d -p 3306:3306  --restart=always  -v /docker/mysql/log/:/var/log/mysqld.log --privileged=true  -v /docker/mysql/conf/:/etc/mysql/conf.d -v /docker/mysql/data/:/var/lib/">
 <meta name="keywords" content="docker,mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker下安装mysql8.0">
 <meta property="og:url" content="https://wenthywang.cn/2018/10/05/docker_install_mysql/index.html">
 <meta property="og:site_name" content="wenthywang">
-<meta property="og:description" content="docker mysql 运行命令docker run  -d -p 3306:3306  –restart=always  -v /docker/mysql/log/:/var/log/mysqld.log –privileged=true  -v /docker/mysql/conf/:/etc/mysql/conf.d -v /docker/mysql/data/:/var/lib/mys">
+<meta property="og:description" content="docker mysql 运行命令1docker run  -d -p 3306:3306  --restart=always  -v /docker/mysql/log/:/var/log/mysqld.log --privileged=true  -v /docker/mysql/conf/:/etc/mysql/conf.d -v /docker/mysql/data/:/var/lib/">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-11T09:28:12.707Z">
+<meta property="og:updated_time" content="2018-10-11T09:30:44.175Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker下安装mysql8.0">
-<meta name="twitter:description" content="docker mysql 运行命令docker run  -d -p 3306:3306  –restart=always  -v /docker/mysql/log/:/var/log/mysqld.log –privileged=true  -v /docker/mysql/conf/:/etc/mysql/conf.d -v /docker/mysql/data/:/var/lib/mys">
+<meta name="twitter:description" content="docker mysql 运行命令1docker run  -d -p 3306:3306  --restart=always  -v /docker/mysql/log/:/var/log/mysqld.log --privileged=true  -v /docker/mysql/conf/:/etc/mysql/conf.d -v /docker/mysql/data/:/var/lib/">
 
 
 
@@ -422,14 +422,14 @@
 
       
         <hr>
-<h1 id="docker-mysql-运行命令"><a href="#docker-mysql-运行命令" class="headerlink" title="docker mysql 运行命令"></a>docker mysql 运行命令</h1><p>docker run  -d -p 3306:3306  –restart=always  -v /docker/mysql/log/:/var/log/mysqld.log –privileged=true  -v /docker/mysql/conf/:/etc/mysql/conf.d -v /docker/mysql/data/:/var/lib/mysql/ -e MYSQL_ROOT_PASSWORD=123456 –name mysql mysql</p>
-<h1 id="配置mysql配置文件"><a href="#配置mysql配置文件" class="headerlink" title="配置mysql配置文件"></a>配置mysql配置文件</h1><p>在/docker/mysql/conf下新增my.cnf文件 添加以下配置</p>
-<p>[mysqld]<br>default-authentication-plugin = mysql_native_password<br>skip-name-resolve  </p>
+<h1 id="docker-mysql-运行命令"><a href="#docker-mysql-运行命令" class="headerlink" title="docker mysql 运行命令"></a>docker mysql 运行命令</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run  -d -p 3306:3306  --restart=always  -v /docker/mysql/log/:/var/log/mysqld.log --privileged=true  -v /docker/mysql/conf/:/etc/mysql/conf.d -v /docker/mysql/data/:/var/lib/mysql/ -e MYSQL_ROOT_PASSWORD=123456 --name mysql mysql</span><br></pre></td></tr></table></figure>
+<h1 id="配置mysql配置文件"><a href="#配置mysql配置文件" class="headerlink" title="配置mysql配置文件"></a>配置mysql配置文件</h1><p>在/docker/mysql/conf下新增my.cnf文件 添加以下配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">default-authentication-plugin = mysql_native_password</span><br><span class="line">skip-name-resolve</span><br></pre></td></tr></table></figure></p>
 <h2 id="配置说明："><a href="#配置说明：" class="headerlink" title="配置说明："></a>配置说明：</h2><ul>
 <li>default-authentication-plugin<br>由于mysql8.0默认的密码加密方式是 caching_sha2_password，而目前大多数人使用的navicat版本是不支持的，因此需要在docker启动mysql的时候指定挂载服务器主机的my.cnf配置文件，在[mysqld] 下需要添加以下配置：<br>default-authentication-plugin = mysql_native_password<br>网上看有人直接进到mysql容器修改user表下root用户的plugin（加密方式），这方法是行不通的，服务器会拒绝连接。</li>
 </ul>
 <ul>
-<li>skip-name-resolve<br>mysql日志显示[Warning] IP address ‘xxxx’ could not be resolved: Name or service not known，那是因为mysql默认会反向解析DNS，对于访问者Mysql不会判断是hosts还是ip都会进行dns反向解析，频繁地查询数据库和权限检查，这大大增加了数据库的压力，导致数据库连接缓慢，严重的时候甚至死机，出现“连接数据库时出错”等字样。<br>解决办法：禁用dns反查即可<br>进入/etc 找到mysql的配置文件my.cnf（linux环境下）或者my.ini(windows环境下)进行编辑加入如下一行即可：<br>[mysqld]<br>skip-name-resolve</li>
+<li>skip-name-resolve<br>mysql日志显示[Warning] IP address ‘xxxx’ could not be resolved: Name or service not known，那是因为mysql默认会反向解析DNS，对于访问者Mysql不会判断是hosts还是ip都会进行dns反向解析，频繁地查询数据库和权限检查，这大大增加了数据库的压力，导致数据库连接缓慢，严重的时候甚至死机，出现“连接数据库时出错”等字样。<br>解决办法：禁用dns反查即可<br>进入/etc 找到mysql的配置文件my.cnf（linux环境下）或者my.ini(windows环境下)进行编辑加入如下一行即可：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">skip-name-resolve</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 
       
@@ -500,8 +500,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/05/docker_install_redis/" rel="next" title="docker下安装redis">
-                <i class="fa fa-chevron-left"></i> docker下安装redis
+              <a href="/2018/10/05/docker_install/" rel="next" title="Centos 下安装docker">
+                <i class="fa fa-chevron-left"></i> Centos 下安装docker
               </a>
             
           </div>
@@ -509,6 +509,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/05/docker_install_redis/" rel="prev" title="docker下安装redis">
+                docker下安装redis <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>

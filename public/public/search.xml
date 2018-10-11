@@ -1,45 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[docker下安装mysql8.0]]></title>
-    <url>%2F2018%2F10%2F05%2Fdocker_install_mysql%2F</url>
-    <content type="text"><![CDATA[docker mysql 运行命令docker run -d -p 3306:3306 –restart=always -v /docker/mysql/log/:/var/log/mysqld.log –privileged=true -v /docker/mysql/conf/:/etc/mysql/conf.d -v /docker/mysql/data/:/var/lib/mysql/ -e MYSQL_ROOT_PASSWORD=123456 –name mysql mysql 配置mysql配置文件在/docker/mysql/conf下新增my.cnf文件 添加以下配置 [mysqld]default-authentication-plugin = mysql_native_passwordskip-name-resolve 配置说明： default-authentication-plugin由于mysql8.0默认的密码加密方式是 caching_sha2_password，而目前大多数人使用的navicat版本是不支持的，因此需要在docker启动mysql的时候指定挂载服务器主机的my.cnf配置文件，在[mysqld] 下需要添加以下配置：default-authentication-plugin = mysql_native_password网上看有人直接进到mysql容器修改user表下root用户的plugin（加密方式），这方法是行不通的，服务器会拒绝连接。 skip-name-resolvemysql日志显示[Warning] IP address ‘xxxx’ could not be resolved: Name or service not known，那是因为mysql默认会反向解析DNS，对于访问者Mysql不会判断是hosts还是ip都会进行dns反向解析，频繁地查询数据库和权限检查，这大大增加了数据库的压力，导致数据库连接缓慢，严重的时候甚至死机，出现“连接数据库时出错”等字样。解决办法：禁用dns反查即可进入/etc 找到mysql的配置文件my.cnf（linux环境下）或者my.ini(windows环境下)进行编辑加入如下一行即可：[mysqld]skip-name-resolve]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[docker下安装redis]]></title>
-    <url>%2F2018%2F10%2F05%2Fdocker_install_redis%2F</url>
-    <content type="text"><![CDATA[执行命令即可docker run -d –restart=always -p 6379:6379 -v /docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /docker/redis/data:/data –name redis redis:latest redis-server /etc/redis/redis.conf –appendonly yes –requirepass “12345678” 声明为需要密码访问的redis 配置requirepass参数]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[docker 下部署rabbitmq]]></title>
-    <url>%2F2018%2F10%2F05%2Fdocker_install_rabbitmq%2F</url>
-    <content type="text"><![CDATA[执行命令即可docker run –restart=always -d -p 5671:5671 -p 5672:5672 -p 15672:15672 -p 15671:15671 -p 25672:25672 -v /docker/rabbitmq-data/:/var/rabbitmq/lib –name rabbitmq rabbitmq:management 访问15676即可看到mq的管理界面]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>rabbitmq</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[docker下安装nginx 并挂载博客目录]]></title>
     <url>%2F2018%2F10%2F05%2Fdocker_install_nginx%2F</url>
-    <content type="text"><![CDATA[执行命令docker run –restart=always -p 80:80 -p 443:443 –name nginx -v /docker/nginx/log/:/var/log/nginx -v /docker/nginx/conf/:/etc/nginx/conf.d/ -v /usr/local/wwh/hexo:/usr/local/wwh/hexo -v /docker/nginx/cert/:/etc/nginx/cert -d nginx nginx 配置在/docker/nginx/conf 下新增nginx.conf 配置文件 内容如下：12345678910111213141516171819202122232425262728293031323334353637383940414243 server &#123; listen 80 ; server_name wenthywang.cn; rewrite ^ https://$host$request_uri? permanent;&#125;server &#123; listen 443; server_name wenthywang.cn; ssl on; root /usr/local/wwh/hexo; ssl_certificate cert/1_wenthywang.cn_bundle.crt; ssl_certificate_key cert/2_wenthywang.cn.key; ssl_session_timeout 5m; ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4; ssl_protocols TLSv1 TLSv1.1 TLSv1.2; ssl_prefer_server_ciphers on; location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|ico)$ &#123; expires 30d; access_log off; &#125; location ~ .*\.(eot|ttf|otf|woff|svg)$ &#123; expires 30d; access_log off; &#125; location ~ .*\.(js|css)?$ &#123; expires 7d; access_log off; &#125; error_page 404 /404.html; location = /40x.html &#123; &#125; error_page 500 502 503 504 /50x.html; location = /50x.html &#123; &#125;&#125; 配置说明cert目录为https证书存放目录，使用的腾讯云的证书。80端口配置跳转为443端口，则访问80端口的时候 默认会跳转到443的链接。其他配置为缓存配置，以及一些静态资源配置。]]></content>
+    <content type="text"><![CDATA[执行命令1docker run --restart=always -p 80:80 -p 443:443 --name nginx -v /docker/nginx/log/:/var/log/nginx -v /docker/nginx/conf/:/etc/nginx/conf.d/ -v /usr/local/wwh/hexo:/usr/local/wwh/hexo -v /docker/nginx/cert/:/etc/nginx/cert -d nginx nginx 配置在/docker/nginx/conf 下新增nginx.conf 配置文件 内容如下：12345678910111213141516171819202122232425262728293031323334353637383940414243 server &#123; listen 80 ; server_name wenthywang.cn; rewrite ^ https://$host$request_uri? permanent;&#125;server &#123; listen 443; server_name wenthywang.cn; ssl on; root /usr/local/wwh/hexo; ssl_certificate cert/1_wenthywang.cn_bundle.crt; ssl_certificate_key cert/2_wenthywang.cn.key; ssl_session_timeout 5m; ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4; ssl_protocols TLSv1 TLSv1.1 TLSv1.2; ssl_prefer_server_ciphers on; location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|ico)$ &#123; expires 30d; access_log off; &#125; location ~ .*\.(eot|ttf|otf|woff|svg)$ &#123; expires 30d; access_log off; &#125; location ~ .*\.(js|css)?$ &#123; expires 7d; access_log off; &#125; error_page 404 /404.html; location = /40x.html &#123; &#125; error_page 500 502 503 504 /50x.html; location = /50x.html &#123; &#125;&#125; 配置说明cert目录为https证书存放目录，使用的腾讯云的证书。80端口配置跳转为443端口，则访问80端口的时候 默认会跳转到443的链接。其他配置为缓存配置，以及一些静态资源配置。]]></content>
       <categories>
         <category>笔记</category>
       </categories>
@@ -49,9 +13,45 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[docker 下部署rabbitmq]]></title>
+    <url>%2F2018%2F10%2F05%2Fdocker_install_rabbitmq%2F</url>
+    <content type="text"><![CDATA[执行命令即可1docker run --restart=always -d -p 5671:5671 -p 5672:5672 -p 15672:15672 -p 15671:15671 -p 25672:25672 -v /docker/rabbitmq-data/:/var/rabbitmq/lib --name rabbitmq rabbitmq:management 访问15676即可看到mq的管理界面]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>rabbitmq</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[docker下安装redis]]></title>
+    <url>%2F2018%2F10%2F05%2Fdocker_install_redis%2F</url>
+    <content type="text"><![CDATA[执行命令即可1docker run -d --restart=always -p 6379:6379 -v /docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /docker/redis/data:/data --name redis redis:latest redis-server /etc/redis/redis.conf --appendonly yes --requirepass &quot;12345678&quot; 声明为需要密码访问的redis 配置requirepass参数]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[docker下安装mysql8.0]]></title>
+    <url>%2F2018%2F10%2F05%2Fdocker_install_mysql%2F</url>
+    <content type="text"><![CDATA[docker mysql 运行命令1docker run -d -p 3306:3306 --restart=always -v /docker/mysql/log/:/var/log/mysqld.log --privileged=true -v /docker/mysql/conf/:/etc/mysql/conf.d -v /docker/mysql/data/:/var/lib/mysql/ -e MYSQL_ROOT_PASSWORD=123456 --name mysql mysql 配置mysql配置文件在/docker/mysql/conf下新增my.cnf文件 添加以下配置123[mysqld]default-authentication-plugin = mysql_native_passwordskip-name-resolve 配置说明： default-authentication-plugin由于mysql8.0默认的密码加密方式是 caching_sha2_password，而目前大多数人使用的navicat版本是不支持的，因此需要在docker启动mysql的时候指定挂载服务器主机的my.cnf配置文件，在[mysqld] 下需要添加以下配置：default-authentication-plugin = mysql_native_password网上看有人直接进到mysql容器修改user表下root用户的plugin（加密方式），这方法是行不通的，服务器会拒绝连接。 skip-name-resolvemysql日志显示[Warning] IP address ‘xxxx’ could not be resolved: Name or service not known，那是因为mysql默认会反向解析DNS，对于访问者Mysql不会判断是hosts还是ip都会进行dns反向解析，频繁地查询数据库和权限检查，这大大增加了数据库的压力，导致数据库连接缓慢，严重的时候甚至死机，出现“连接数据库时出错”等字样。解决办法：禁用dns反查即可进入/etc 找到mysql的配置文件my.cnf（linux环境下）或者my.ini(windows环境下)进行编辑加入如下一行即可：12[mysqld]skip-name-resolve]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Centos 下安装docker]]></title>
     <url>%2F2018%2F10%2F05%2Fdocker_install%2F</url>
-    <content type="text"><![CDATA[docker 介绍 Docker 让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，便可以实现虚拟化。Docker改变了虚拟化的方式，使开发者可以直接将自己的成果放入Docker中进行管理。方便快捷已经是 Docker的最大优势，过去需要用数天乃至数周的 任务，在Docker容器的处理下，只需要数秒就能完成。 Web 应用的自动化打包和发布。 自动化测试和持续集成、发布。 在服务型环境中部署和调整数据库或其他的后台应用。 安装说明 Docker 要求 CentOS 系统的内核版本高于 3.10 ，查看本页面的前提条件来验证你的CentOS 版本是否支持 Docker 。 通过 uname -r 命令查看你当前的内核版本 uname -r 使用 root 权限登录 Centos。确保 yum 包更新到最新。yum update 卸载旧版本(如果安装过旧版本的话) yum remove docker docker-common docker-selinux docker-engine 安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的yum install -y yum-utils device-mapper-persistent-data lvm2 设置yum源 yum-config-manager –add-repo https://download.docker.com/linux/centos/docker-ce.repo 安装dockeryum install docker-ce 启动并加入开机启动 systemctl start docker systemctl enable docker 验证安装是否成功(有client和service两部分表示docker安装启动都成功了)docker version]]></content>
+    <content type="text"><![CDATA[docker 介绍 Docker 让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，便可以实现虚拟化。Docker改变了虚拟化的方式，使开发者可以直接将自己的成果放入Docker中进行管理。方便快捷已经是 Docker的最大优势，过去需要用数天乃至数周的 任务，在Docker容器的处理下，只需要数秒就能完成。 Web 应用的自动化打包和发布。 自动化测试和持续集成、发布。 在服务型环境中部署和调整数据库或其他的后台应用。 安装说明 Docker 要求 CentOS 系统的内核版本高于 3.10 ，查看本页面的前提条件来验证你的CentOS 版本是否支持 Docker 。 通过 uname -r 命令查看你当前的内核版本1uname -r 使用 root 权限登录 Centos。确保 yum 包更新到最新。1yum update 卸载旧版本(如果安装过旧版本的话)1yum remove docker docker-common docker-selinux docker-engine 安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的1yum install -y yum-utils device-mapper-persistent-data lvm2 设置yum源1yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo 安装docker1yum install docker-ce 启动并加入开机启动12systemctl start dockersystemctl enable docker 验证安装是否成功(有client和service两部分表示docker安装启动都成功了)1docker version]]></content>
       <categories>
         <category>笔记</category>
       </categories>
