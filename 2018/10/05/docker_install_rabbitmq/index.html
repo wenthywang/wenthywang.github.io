@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="执行命令即可docker run  --restart=always -d  -p 5671:5671 -p 5672:5672   -p 15672:15672 -p 15671:15671  -p 25672:25672  -v /docker/rabbitmq-data/:/var/rabbitmq/lib   --name rabbitmq   rabbitmq:management">
+<meta name="description" content="执行命令即可docker run  --restart=always -d  -p 5671:5671 -p 5672:5672   -p 15672:15672 -p 15671:15671  -p 25672:25672   -v /docker/rabbitmq-data/:/var/rabbitmq/lib   --name rabbitmq   rabbitmq:management">
 <meta name="keywords" content="docker,rabbitmq">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker 下部署rabbitmq">
 <meta property="og:url" content="https://wenthywang.cn/2018/10/05/docker_install_rabbitmq/index.html">
 <meta property="og:site_name" content="wenthywang">
-<meta property="og:description" content="执行命令即可docker run  --restart=always -d  -p 5671:5671 -p 5672:5672   -p 15672:15672 -p 15671:15671  -p 25672:25672  -v /docker/rabbitmq-data/:/var/rabbitmq/lib   --name rabbitmq   rabbitmq:management">
+<meta property="og:description" content="执行命令即可docker run  --restart=always -d  -p 5671:5671 -p 5672:5672   -p 15672:15672 -p 15671:15671  -p 25672:25672   -v /docker/rabbitmq-data/:/var/rabbitmq/lib   --name rabbitmq   rabbitmq:management">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-11T09:33:23.686Z">
+<meta property="og:updated_time" content="2018-10-11T09:34:01.365Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker 下部署rabbitmq">
-<meta name="twitter:description" content="执行命令即可docker run  --restart=always -d  -p 5671:5671 -p 5672:5672   -p 15672:15672 -p 15671:15671  -p 25672:25672  -v /docker/rabbitmq-data/:/var/rabbitmq/lib   --name rabbitmq   rabbitmq:management">
+<meta name="twitter:description" content="执行命令即可docker run  --restart=always -d  -p 5671:5671 -p 5672:5672   -p 15672:15672 -p 15671:15671  -p 25672:25672   -v /docker/rabbitmq-data/:/var/rabbitmq/lib   --name rabbitmq   rabbitmq:management">
 
 
 
@@ -423,7 +423,8 @@
       
         <hr>
 <h1 id="执行命令即可"><a href="#执行命令即可" class="headerlink" title="执行命令即可"></a>执行命令即可</h1><pre><code>docker run  --restart=always -d  -p 5671:5671 -p 5672:5672  
--p 15672:15672 -p 15671:15671  -p 25672:25672  -v /docker/rabbitmq-data/:/var/rabbitmq/lib  
+-p 15672:15672 -p 15671:15671  -p 25672:25672  
+-v /docker/rabbitmq-data/:/var/rabbitmq/lib  
 --name rabbitmq   rabbitmq:management
 </code></pre><ul>
 <li>访问15672即可看到mq的管理界面</li>
@@ -497,8 +498,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/05/docker_install/" rel="next" title="Centos 下安装docker">
-                <i class="fa fa-chevron-left"></i> Centos 下安装docker
+              <a href="/2018/10/05/docker_install_nginx/" rel="next" title="docker下安装nginx 并挂载博客目录">
+                <i class="fa fa-chevron-left"></i> docker下安装nginx 并挂载博客目录
               </a>
             
           </div>

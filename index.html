@@ -415,171 +415,11 @@
         
           
           
-docker mysql 运行命令1docker run  -d -p 3306:3306  --restart=always  -v /docker/mysql/log/:/var/log/mysqld.log --privileged=true  -v /docker/mysql/conf/:
+docker mysql 运行命令123docker run  -d -p 3306:3306  --restart=always  -v /docker/mysql/log/:/var/log/mysqld.log--privileged=true  -v /docker/mysql/conf/
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/10/05/docker_install_mysql/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wenthywang.cn/2018/10/05/docker_install_nginx/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wenthywang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wenthywang">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/05/docker_install_nginx/" itemprop="url">docker下安装nginx 并挂载博客目录</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-05T16:30:41+08:00">
-                2018-10-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/10/05/docker_install_nginx/" class="leancloud_visitors" data-flag-title="docker下安装nginx 并挂载博客目录">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-执行命令1docker run  --restart=always  -p 80:80 -p 443:443 --name nginx -v /docker/nginx/log/:/var/log/nginx -v /docker/nginx/conf/:/etc/nginx/conf.d/ -v
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/05/docker_install_nginx/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -735,7 +575,7 @@ docker mysql 运行命令1docker run  -d -p 3306:3306  --restart=always  -v /doc
         
           
           
-执行命令即可1docker run -d  --restart=always  -p 6379:6379 -v /docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /docker/redis/data:/data --name redis 
+执行命令即可12345docker run -d  --restart=always  -p 6379:6379-v /docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /docker/redis/data:/data--name redi
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -896,11 +736,172 @@ docker mysql 运行命令1docker run  -d -p 3306:3306  --restart=always  -v /doc
           
           
 执行命令即可docker run  --restart=always -d  -p 5671:5671 -p 5672:5672  
--p 15672:15672 -p 15671:15671  -p 25672:25672  -v /docker/rabbitmq-data/:/var/rabb
+-p 15672:15672 -p 15671:15671  -p 25672:25672  
+-v /docker/rabbitmq-data/:/var/rab
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/10/05/docker_install_rabbitmq/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wenthywang.cn/2018/10/05/docker_install_nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wenthywang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wenthywang">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/05/docker_install_nginx/" itemprop="url">docker下安装nginx 并挂载博客目录</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-05T16:30:41+08:00">
+                2018-10-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/05/docker_install_nginx/" class="leancloud_visitors" data-flag-title="docker下安装nginx 并挂载博客目录">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+执行命令12345docker run  --restart=always  -p 80:80 -p 443:443 --name nginx-v /docker/nginx/log/:/var/log/nginx -v /docker/nginx/conf/:/etc/nginx/conf.d/
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/05/docker_install_nginx/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
