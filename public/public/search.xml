@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[IDEA 安装 JRebel]]></title>
-    <url>%2F2018%2F07%2F05%2Fdocker_install%2F</url>
-    <content type="text"><![CDATA[科普JRebel IDEA上原生是不支持热部署的，一般更新了 Java 文件后要手动重启 Tomcat 服务器，才能生效，浪费不少生命啊。目前对于idea热部署最好的解决方案就是安装JRebel插件，这样不论是更新 class 类还是更新 Spring 配置文件都能做到立马生效，大大提高开发效率。进一步说，就是Jrebel让开发更实在，随时修改，随时查看修改结果。目前测试，配置文件和类文件都能实现热部署，强烈推荐。 下载并安装 插件安装跟Eclipse安装类似，提供了两种安装方法。 在线安装 打开IDEA,Files-&gt;Settings-&gt;搜索框填Plugins 选择Browser repositories ,然后搜索框输入Jrebel，界面显示有且只有一个，然后点安装即可。 离线安装 找到最新版本，一般来说，我都会使用最新版本。 https://plugins.jetbrains.com/plugin/4441-jrebel-for-intellij 下载下来是一个zip包，然后打开IDEA ,Files-&gt;Settins-&gt;搜索框填Plugins 选择Install Plugin from disk 选择刚才下载好的zip包 生效 无论是第一种方式还是第二种方式安装，都必须重新启动IDEA才能生效，毕竟这是插件。 一般来说推荐使用在线安装，但是一般来说在线安装基本上很难，这个跟网络有关。 所以当在线安装不行的话，就离线安装。 激活打开IDEA,Files-&gt;Settings-&gt;Jrebel右面会显示当前是否是已激活状态，现需要激活。使用的是lincense Server,点击active now 然后在lincenseServer上添加地址： http://139.199.89.239:1008/88414687-3b91-4286-89ba-2dc813b107ce 邮箱随便填，填完就点active即可。一般来说都能激活的。不能激活的话，要重新找server了。 修改配置修改IDEA 运行时编译，默认是不选择的。 Ctrl+Shift+a 填Registry 勾选complier.*.app.runninng JRebel插件的配置使用默认配置即可 运行Springboot程序 运行前需要指定部署的是哪个模块，需要配置运行的模块。 在main方法右键Run的时候发现有Run with JRebel，必然是选择这个了。然后其他的配置 看个人使用配置了。]]></content>
+    <title><![CDATA[Centos 下安装docker]]></title>
+    <url>%2F2018%2F10%2F05%2Fdocker_install%2F</url>
+    <content type="text"><![CDATA[docker 介绍 Docker 让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，便可以实现虚拟化。Docker改变了虚拟化的方式，使开发者可以直接将自己的成果放入Docker中进行管理。方便快捷已经是 Docker的最大优势，过去需要用数天乃至数周的 任务，在Docker容器的处理下，只需要数秒就能完成。 Web 应用的自动化打包和发布。 自动化测试和持续集成、发布。 在服务型环境中部署和调整数据库或其他的后台应用。 安装说明 Docker 要求 CentOS 系统的内核版本高于 3.10 ，查看本页面的前提条件来验证你的CentOS 版本是否支持 Docker 。 通过 uname -r 命令查看你当前的内核版本 uname -r 使用 root 权限登录 Centos。确保 yum 包更新到最新。yum update 卸载旧版本(如果安装过旧版本的话) yum remove docker docker-common docker-selinux docker-engine 安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的yum install -y yum-utils device-mapper-persistent-data lvm2 设置yum源 yum-config-manager –add-repo https://download.docker.com/linux/centos/docker-ce.repo 安装dockeryum install docker-ce 启动并加入开机启动 systemctl start docker systemctl enable docker 验证安装是否成功(有client和service两部分表示docker安装启动都成功了)docker version]]></content>
       <categories>
         <category>笔记</category>
       </categories>
       <tags>
-        <tag>IDEA</tag>
-        <tag>JRebel</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
