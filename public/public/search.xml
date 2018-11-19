@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[jenkins maven构建时报错]]></title>
+    <url>%2F2018%2F11%2F18%2Fdocker_error%2F</url>
+    <content type="text"><![CDATA[构建错误提示maven docker 报错 1234567 Thin Pool has 0 free data blocks which is less than minimum required 163840 free data blocks. Create more free space in thin pool or use dm.min_free_space option to change behavior.See ‘/usr/bin/docker-current run --help‘.``` 运行下面三个命令：// 注意，以下三个命令执行时可能出错是正常的。清理exited进程： docker rm $(docker ps -q -f status=exited)12清理dangling volumes： docker volume rm $(docker volume ls -qf dangling=true)12清理dangling image： docker rmi $(docker images –filter “dangling=true” -q –no-trunc)` 以上命令，可能是dockerhost 磁盘满了，可使用docker info 查看docker 使用情况，如果不是dockerhost 可能是registry满了，都必须检查，不然会一直构建失败，相关联的docker机器都得检查下。]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>jenkins</tag>
+        <tag>maven</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[docker下安装jenkins]]></title>
     <url>%2F2018%2F11%2F18%2Fdocker_install_jenkins%2F</url>
     <content type="text"><![CDATA[赋予文件夹权限123456789chown -R 1000 //docker/jenkins/jenkins_homechown -R 1000 /data/maven_reptchown -R 1000 /data/apache-maven-3.5.2chown -R 1000 ~/.ssh``` 如果没有权限，则jenkins在构建时会出错，ssh 是方便jenkins使用ssh连接其他机器。# docker jenkins 运行命令 docker run –restart=always –name jenkins -p 8080:8080 -p 50000:50000 \ -v /docker/jenkins/jenkins_home:/var/jenkins_home \ -v /etc/localtime:/etc/localtime \ -v /etc/timezone:/etc/timezone \ -v /data/apache-maven-3.5.2:/data/apache-maven-3.5.2 \ -v /data/maven_rept:/data/maven_rept \ -v ~/.ssh:/var/jenkins_home/.ssh \ -d docker.io/jenkins/jenkins`]]></content>
@@ -10,20 +23,6 @@
       <tags>
         <tag>docker</tag>
         <tag>jenkins</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[docker下安装容器监控]]></title>
-    <url>%2F2018%2F10%2F05%2Fdocker_monitor%2F</url>
-    <content type="text"><![CDATA[运行容器1docker run -d -p 8083:8083 -p 8086:8086 --name influxsrv tutum/influxdb 安装influxdb 保存数据 1docker run --volume=/:/rootfs:ro --volume=/var/run:/var/run:rw --volume=/sys:/sys:ro --volume=/var/lib/docker/:/var/lib/docker:ro --publish=8080:8080 --detach=true --name=cadvisor google/cadvisor:latest -storage_driver=influxdb -storage_driver_db=cadvisor -storage_driver_host=192.168.9.110:8086 启动容器信息收集器，需要监控的机器都得安装。 1docker run -d -p 3000:3000 -e INFLUXDB_HOST=localhost -e INFLUXDB_PORT=8086 -e INFLUXDB_NAME=cadvisor -e INFLUXDB_USER=root -e INFLUXDB_PASS=root --link influxsrv:influxsrv --name grafana grafana/grafana 启动grafana 界面管理]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>influxdb</tag>
-        <tag>cadvisor</tag>
-        <tag>grafana</tag>
       </tags>
   </entry>
   <entry>
@@ -50,18 +49,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[docker 下部署rabbitmq]]></title>
-    <url>%2F2018%2F10%2F05%2Fdocker_install_rabbitmq%2F</url>
-    <content type="text"><![CDATA[执行命令即可docker run --restart=always -d -p 5671:5671 -p 5672:5672 -p 15672:15672 -p 15671:15671 -p 25672:25672 -v /docker/rabbitmq-data/:/var/rabbitmq/lib --name rabbitmq rabbitmq:management 访问15672即可看到mq的管理界面]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>rabbitmq</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[docker下安装nginx 并挂载博客目录]]></title>
     <url>%2F2018%2F10%2F05%2Fdocker_install_nginx%2F</url>
     <content type="text"><![CDATA[执行命令12345docker run --restart=always -p 80:80 -p 443:443 --name nginx-v /docker/nginx/log/:/var/log/nginx -v /docker/nginx/conf/:/etc/nginx/conf.d/-v /usr/local/wwh/hexo:/usr/local/wwh/hexo-v /docker/nginx/cert/:/etc/nginx/cert -d nginx nginx 配置在/docker/nginx/conf 下新增nginx.conf 配置文件 内容如下：12345678910111213141516171819202122232425262728293031323334353637383940414243 server &#123; listen 80 ; server_name wenthywang.cn; rewrite ^ https://$host$request_uri? permanent;&#125;server &#123; listen 443; server_name wenthywang.cn; ssl on; root /usr/local/wwh/hexo; ssl_certificate cert/1_wenthywang.cn_bundle.crt; ssl_certificate_key cert/2_wenthywang.cn.key; ssl_session_timeout 5m; ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4; ssl_protocols TLSv1 TLSv1.1 TLSv1.2; ssl_prefer_server_ciphers on; location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|ico)$ &#123; expires 30d; access_log off; &#125; location ~ .*\.(eot|ttf|otf|woff|svg)$ &#123; expires 30d; access_log off; &#125; location ~ .*\.(js|css)?$ &#123; expires 7d; access_log off; &#125; error_page 404 /404.html; location = /40x.html &#123; &#125; error_page 500 502 503 504 /50x.html; location = /50x.html &#123; &#125;&#125; 配置说明cert目录为https证书存放目录，使用的腾讯云的证书。80端口配置跳转为443端口，则访问80端口的时候 默认会跳转到443的链接。其他配置为缓存配置，以及一些静态资源配置。]]></content>
@@ -74,6 +61,32 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[docker 下部署rabbitmq]]></title>
+    <url>%2F2018%2F10%2F05%2Fdocker_install_rabbitmq%2F</url>
+    <content type="text"><![CDATA[执行命令即可docker run --restart=always -d -p 5671:5671 -p 5672:5672 -p 15672:15672 -p 15671:15671 -p 25672:25672 -v /docker/rabbitmq-data/:/var/rabbitmq/lib --name rabbitmq rabbitmq:management 访问15672即可看到mq的管理界面]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>rabbitmq</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[docker下安装容器监控]]></title>
+    <url>%2F2018%2F10%2F05%2Fdocker_monitor%2F</url>
+    <content type="text"><![CDATA[运行容器1docker run -d -p 8083:8083 -p 8086:8086 --name influxsrv tutum/influxdb 安装influxdb 保存数据 1docker run --volume=/:/rootfs:ro --volume=/var/run:/var/run:rw --volume=/sys:/sys:ro --volume=/var/lib/docker/:/var/lib/docker:ro --publish=8080:8080 --detach=true --name=cadvisor google/cadvisor:latest -storage_driver=influxdb -storage_driver_db=cadvisor -storage_driver_host=192.168.9.110:8086 启动容器信息收集器，需要监控的机器都得安装。 1docker run -d -p 3000:3000 -e INFLUXDB_HOST=localhost -e INFLUXDB_PORT=8086 -e INFLUXDB_NAME=cadvisor -e INFLUXDB_USER=root -e INFLUXDB_PASS=root --link influxsrv:influxsrv --name grafana grafana/grafana 启动grafana 界面管理]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>influxdb</tag>
+        <tag>cadvisor</tag>
+        <tag>grafana</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[docker下安装redis]]></title>
     <url>%2F2018%2F10%2F05%2Fdocker_install_redis%2F</url>
     <content type="text"><![CDATA[执行命令即可12345docker run -d --restart=always -p 6379:6379-v /docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /docker/redis/data:/data--name redis redis:latest redis-server /etc/redis/redis.conf--appendonly yes --requirepass &quot;12345678&quot; 声明为需要密码访问的redis 配置requirepass参数]]></content>
@@ -83,19 +96,6 @@
       <tags>
         <tag>docker</tag>
         <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[jenkins maven构建时报错]]></title>
-    <url>%2F2018%2F10%2F05%2Fdocker_error%2F</url>
-    <content type="text"><![CDATA[构建错误提示maven docker 报错 1234567 Thin Pool has 0 free data blocks which is less than minimum required 163840 free data blocks. Create more free space in thin pool or use dm.min_free_space option to change behavior.See ‘/usr/bin/docker-current run --help‘.``` 运行下面三个命令：// 注意，以下三个命令执行时可能出错是正常的。清理exited进程： docker rm $(docker ps -q -f status=exited)12清理dangling volumes： docker volume rm $(docker volume ls -qf dangling=true)12清理dangling image： docker rmi $(docker images –filter “dangling=true” -q –no-trunc)` 以上命令，可能是dockerhost 磁盘满了，可使用docker info 查看docker 使用情况，如果不是dockerhost 可能是registry满了，都必须检查，不然会一直构建失败，相关联的docker机器都得检查下。]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>jenkins</tag>
-        <tag>maven</tag>
       </tags>
   </entry>
   <entry>
@@ -228,8 +228,8 @@
         <category>分布式</category>
       </categories>
       <tags>
-        <tag>elasticsearch-插件</tag>
         <tag>分布式</tag>
+        <tag>elasticsearch-插件</tag>
       </tags>
   </entry>
   <entry>
@@ -279,8 +279,8 @@
         <category>分布式</category>
       </categories>
       <tags>
-        <tag>分布式</tag>
         <tag>elasticsearch</tag>
+        <tag>分布式</tag>
       </tags>
   </entry>
   <entry>
@@ -411,14 +411,14 @@
     <content type="text"><![CDATA[]]></content>
   </entry>
   <entry>
-    <title><![CDATA[关于我]]></title>
-    <url>%2Fabout%2Findex.html</url>
-    <content type="text"><![CDATA[王文辉 一个对技术充满好奇的小伙子 涉世未深，有着洞察世界的眼 涉猎了很多程序相关的书籍，喜欢一个人做研究与思考 but…..我更想和别人分享和交流想法…..特别是你…..come on 目前Status 在一家初创公司 做Java开发 每一次完成公司的需求都会有很大的成就感 感觉在学习 不是在工作 Working is Study Working is Study Study is working 过去学习过C++,C#,汇编语言，外挂制作，反编译等。曾经对技术的热爱，你无法想象 。 未来better than present]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[分类]]></title>
     <url>%2Fcategories%2Findex.html</url>
     <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[关于我]]></title>
+    <url>%2Fabout%2Findex.html</url>
+    <content type="text"><![CDATA[王文辉 一个对技术充满好奇的小伙子 涉世未深，有着洞察世界的眼 涉猎了很多程序相关的书籍，喜欢一个人做研究与思考 but…..我更想和别人分享和交流想法…..特别是你…..come on 目前Status 在一家初创公司 做Java开发 每一次完成公司的需求都会有很大的成就感 感觉在学习 不是在工作 Working is Study Working is Study Study is working 过去学习过C++,C#,汇编语言，外挂制作，反编译等。曾经对技术的热爱，你无法想象 。 未来better than present]]></content>
   </entry>
   <entry>
     <title><![CDATA[tags]]></title>
