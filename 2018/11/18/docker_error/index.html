@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="构建错误提示maven docker 报错   1234567 Thin Pool has 0 free data blocks which is less than minimum required 163840 free data blocks. Create more free space in thin pool or use dm.min_free_space option to ch">
+<meta name="description" content="构建错误提示maven docker 报错   123456789 Thin Pool has 0 free data blocks which is less than minimum required 163840 free data blocks. Create more free space in thin pool or use dm.min_free_space option to">
 <meta name="keywords" content="docker,jenkins,maven">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jenkins maven构建时报错">
 <meta property="og:url" content="https://wenthywang.cn/2018/11/18/docker_error/index.html">
 <meta property="og:site_name" content="wenthywang">
-<meta property="og:description" content="构建错误提示maven docker 报错   1234567 Thin Pool has 0 free data blocks which is less than minimum required 163840 free data blocks. Create more free space in thin pool or use dm.min_free_space option to ch">
+<meta property="og:description" content="构建错误提示maven docker 报错   123456789 Thin Pool has 0 free data blocks which is less than minimum required 163840 free data blocks. Create more free space in thin pool or use dm.min_free_space option to">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-19T08:52:44.734Z">
+<meta property="og:updated_time" content="2018-11-19T08:54:21.813Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jenkins maven构建时报错">
-<meta name="twitter:description" content="构建错误提示maven docker 报错   1234567 Thin Pool has 0 free data blocks which is less than minimum required 163840 free data blocks. Create more free space in thin pool or use dm.min_free_space option to ch">
+<meta name="twitter:description" content="构建错误提示maven docker 报错   123456789 Thin Pool has 0 free data blocks which is less than minimum required 163840 free data blocks. Create more free space in thin pool or use dm.min_free_space option to">
 
 
 
@@ -423,7 +423,7 @@
       
         <hr>
 <h1 id="构建错误提示"><a href="#构建错误提示" class="headerlink" title="构建错误提示"></a>构建错误提示</h1><p>maven docker 报错  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> Thin Pool has 0 free data blocks which is less than minimum required 163840 free data blocks. Create more free space in thin pool or use dm.min_free_space option to change behavior.</span><br><span class="line">See ‘/usr/bin/docker-current run --help‘.</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">运行下面三个命令：</span><br><span class="line">// 注意，以下三个命令执行时可能出错是正常的。</span><br><span class="line">清理exited进程：</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> Thin Pool has 0 free data blocks which is less than minimum required 163840 free data blocks. Create more free space in thin pool or use dm.min_free_space option to change behavior.</span><br><span class="line">See ‘/usr/bin/docker-current run --help‘.</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">运行下面三个命令：  </span><br><span class="line"></span><br><span class="line">// 注意，以下三个命令执行时可能出错是正常的。  </span><br><span class="line"></span><br><span class="line">清理exited进程：</span><br></pre></td></tr></table></figure>
 <p>docker rm $(docker ps -q -f status=exited)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">清理dangling volumes：</span><br></pre></td></tr></table></figure></p>
 <p>docker volume rm $(docker volume ls -qf dangling=true)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">清理dangling image：</span><br></pre></td></tr></table></figure></p>
 <p>docker rmi $(docker images –filter “dangling=true” -q –no-trunc)<br><code>`</code></p>
