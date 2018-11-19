@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[jenkins maven构建时报错]]></title>
     <url>%2F2018%2F11%2F18%2Fdocker_error%2F</url>
-    <content type="text"><![CDATA[构建错误提示maven docker 报错 1234567891011 Thin Pool has 0 free data blocks which is less than minimum required 163840 free data blocks. Create more free space in thin pool or use dm.min_free_space option to change behavior.See ‘/usr/bin/docker-current run --help‘.``` 运行下面三个命令： // 注意，以下三个命令执行时可能出错是正常的。 清理exited进程： docker rm $(docker ps -q -f status=exited)12清理dangling volumes： docker volume rm $(docker volume ls -qf dangling=true)12清理dangling image： docker rmi $(docker images –filter “dangling=true” -q –no-trunc)` 以上命令，可能是dockerhost 磁盘满了，可使用docker info 查看docker 使用情况，如果不是dockerhost 可能是registry满了，都必须检查，不然会一直构建失败，相关联的docker机器都得检查下。]]></content>
+    <content type="text"><![CDATA[maven构建错误提示1234567891011 Thin Pool has 0 free data blocks which is less than minimum required 163840 free data blocks. Create more free space in thin pool or use dm.min_free_space option to change behavior.See ‘/usr/bin/docker-current run --help‘.``` 运行下面三个命令： // 注意，以下三个命令执行时可能出错是正常的。 清理exited进程： docker rm $(docker ps -q -f status=exited)12清理dangling volumes： docker volume rm $(docker volume ls -qf dangling=true)12清理dangling image： docker rmi $(docker images –filter “dangling=true” -q –no-trunc)` 以上命令，可能是dockerhost 磁盘满了，可使用docker info 查看docker 使用情况，如果不是dockerhost 可能是registry满了，都必须检查，不然会一直构建失败，相关联的docker机器都得检查下。]]></content>
       <categories>
         <category>笔记</category>
       </categories>
