@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="wenthywang">
 <meta property="og:description" content="赋予文件夹权限如果没有权限，则jenkins在构建时会出错，ssh 是方便jenkins使用ssh连接其他机器。   chown -R 1000 /docker/jenkins/jenkins_home chown -R 1000 /data/maven_rept chown -R 1000 /data/apache-maven-3.5.2 chown -R 1000 ~/.ssh 执行命令do">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-19T08:59:17.644Z">
+<meta property="og:updated_time" content="2018-11-19T09:00:04.638Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker下安装jenkins">
 <meta name="twitter:description" content="赋予文件夹权限如果没有权限，则jenkins在构建时会出错，ssh 是方便jenkins使用ssh连接其他机器。   chown -R 1000 /docker/jenkins/jenkins_home chown -R 1000 /data/maven_rept chown -R 1000 /data/apache-maven-3.5.2 chown -R 1000 ~/.ssh 执行命令do">
@@ -429,10 +429,10 @@ chown -R 1000 /data/apache-maven-3.5.2
 chown -R 1000 ~/.ssh
 </code></pre><h1 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a>执行命令</h1><pre><code>docker run  --restart=always --name jenkins -p 8080:8080 -p 50000:50000 \
     -v /docker/jenkins/jenkins_home:/var/jenkins_home \
-   -v /etc/localtime:/etc/localtime \
+    -v /etc/localtime:/etc/localtime \
     -v /etc/timezone:/etc/timezone \
-   -v /data/apache-maven-3.5.2:/data/apache-maven-3.5.2 \
-   -v /data/maven_rept:/data/maven_rept \
+    -v /data/apache-maven-3.5.2:/data/apache-maven-3.5.2 \
+    -v /data/maven_rept:/data/maven_rept \
     -v ~/.ssh:/var/jenkins_home/.ssh \
     -d  docker.io/jenkins/jenkins
 </code></pre>
