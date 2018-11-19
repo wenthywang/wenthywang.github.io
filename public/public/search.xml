@@ -3,26 +3,13 @@
   <entry>
     <title><![CDATA[docker下安装jenkins]]></title>
     <url>%2F2018%2F11%2F18%2Fdocker_install_jenkins%2F</url>
-    <content type="text"><![CDATA[赋予文件夹权限12345678910chown -R 1000 //docker/jenkins/jenkins_homechown -R 1000 /data/maven_reptchown -R 1000 /data/apache-maven-3.5.2chown -R 1000 ~/.ssh``` 如果没有权限，则jenkins在构建时会出错，ssh 是方便jenkins使用ssh连接其他机器。# docker jenkins 运行命令 docker run –restart=always –name jenkins -p 8080:8080 -p 50000:50000 \ -v /docker/jenkins/jenkins_home:/var/jenkins_home \ -v /etc/localtime:/etc/localtime \ -v /etc/timezone:/etc/timezone \ -v /data/apache-maven-3.5.2:/data/apache-maven-3.5.2 \ -v /data/maven_rept:/data/maven_rept \ -v ~/.ssh:/var/jenkins_home/.ssh \ -d docker.io/jenkins/jenkins`]]></content>
+    <content type="text"><![CDATA[赋予文件夹权限123456789chown -R 1000 //docker/jenkins/jenkins_homechown -R 1000 /data/maven_reptchown -R 1000 /data/apache-maven-3.5.2chown -R 1000 ~/.ssh``` 如果没有权限，则jenkins在构建时会出错，ssh 是方便jenkins使用ssh连接其他机器。# docker jenkins 运行命令 docker run –restart=always –name jenkins -p 8080:8080 -p 50000:50000 \ -v /docker/jenkins/jenkins_home:/var/jenkins_home \ -v /etc/localtime:/etc/localtime \ -v /etc/timezone:/etc/timezone \ -v /data/apache-maven-3.5.2:/data/apache-maven-3.5.2 \ -v /data/maven_rept:/data/maven_rept \ -v ~/.ssh:/var/jenkins_home/.ssh \ -d docker.io/jenkins/jenkins`]]></content>
       <categories>
         <category>笔记</category>
       </categories>
       <tags>
         <tag>docker</tag>
         <tag>jenkins</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[jenkins maven构建时报错]]></title>
-    <url>%2F2018%2F10%2F05%2Fdocker_error%2F</url>
-    <content type="text"><![CDATA[构建错误提示maven docker 报错1234567 Thin Pool has 0 free data blocks which is less than minimum required 163840 free data blocks. Create more free space in thin pool or use dm.min_free_space option to change behavior.See ‘/usr/bin/docker-current run --help‘.``` 运行下面三个命令：// 注意，以下三个命令执行时可能出错是正常的。清理exited进程： docker rm $(docker ps -q -f status=exited)12清理dangling volumes： docker volume rm $(docker volume ls -qf dangling=true)12清理dangling image： docker rmi $(docker images –filter “dangling=true” -q –no-trunc)` 以上命令，可能是dockerhost 磁盘满了，可使用docker info 查看docker 使用情况，如果不是dockerhost 可能是registry满了，都必须检查，不然会一直构建失败，相关联的docker机器都得检查下。]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>jenkins</tag>
-        <tag>maven</tag>
       </tags>
   </entry>
   <entry>
@@ -37,6 +24,29 @@
         <tag>influxdb</tag>
         <tag>cadvisor</tag>
         <tag>grafana</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Centos 下安装docker]]></title>
+    <url>%2F2018%2F10%2F05%2Fdocker_install%2F</url>
+    <content type="text"><![CDATA[docker 介绍 Docker 让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，便可以实现虚拟化。Docker改变了虚拟化的方式，使开发者可以直接将自己的成果放入Docker中进行管理。方便快捷已经是 Docker的最大优势，过去需要用数天乃至数周的 任务，在Docker容器的处理下，只需要数秒就能完成。 Web 应用的自动化打包和发布。 自动化测试和持续集成、发布。 在服务型环境中部署和调整数据库或其他的后台应用。 安装说明 Docker 要求 CentOS 系统的内核版本高于 3.10 ，查看本页面的前提条件来验证你的CentOS 版本是否支持 Docker 。 通过 uname -r 命令查看你当前的内核版本1uname -r 使用 root 权限登录 Centos。确保 yum 包更新到最新。1yum update 卸载旧版本(如果安装过旧版本的话)1yum remove docker docker-common docker-selinux docker-engine 安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的1yum install -y yum-utils device-mapper-persistent-data lvm2 设置yum源1yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo 安装docker1yum install docker-ce 启动并加入开机启动12systemctl start dockersystemctl enable docker 验证安装是否成功(有client和service两部分表示docker安装启动都成功了)1docker version]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[docker下安装mysql8.0]]></title>
+    <url>%2F2018%2F10%2F05%2Fdocker_install_mysql%2F</url>
+    <content type="text"><![CDATA[docker mysql 运行命令12345678docker run -d -p 3306:3306 --restart=always -v /docker/mysql/log/:/var/log/mysqld.log--privileged=true -v /docker/mysql/conf/:/etc/mysql/conf.d-v /docker/mysql/data/:/var/lib/mysql/-e MYSQL_ROOT_PASSWORD=123456--name mysql mysql 配置mysql配置文件在/docker/mysql/conf下新增my.cnf文件 添加以下配置123[mysqld]default-authentication-plugin = mysql_native_passwordskip-name-resolve 配置说明： default-authentication-plugin由于mysql8.0默认的密码加密方式是 caching_sha2_password，而目前大多数人使用的navicat版本是不支持的，因此需要在docker启动mysql的时候指定挂载服务器主机的my.cnf配置文件，在[mysqld] 下需要添加以下配置：default-authentication-plugin = mysql_native_password网上看有人直接进到mysql容器修改user表下root用户的plugin（加密方式），这方法是行不通的，服务器会拒绝连接。 skip-name-resolvemysql日志显示[Warning] IP address ‘xxxx’ could not be resolved: Name or service not known，那是因为mysql默认会反向解析DNS，对于访问者Mysql不会判断是hosts还是ip都会进行dns反向解析，频繁地查询数据库和权限检查，这大大增加了数据库的压力，导致数据库连接缓慢，严重的时候甚至死机，出现“连接数据库时出错”等字样。解决办法：禁用dns反查即可进入/etc 找到mysql的配置文件my.cnf（linux环境下）或者my.ini(windows环境下)进行编辑加入如下一行即可：12[mysqld]skip-name-resolve]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -64,18 +74,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[docker下安装mysql8.0]]></title>
-    <url>%2F2018%2F10%2F05%2Fdocker_install_mysql%2F</url>
-    <content type="text"><![CDATA[docker mysql 运行命令12345678docker run -d -p 3306:3306 --restart=always -v /docker/mysql/log/:/var/log/mysqld.log--privileged=true -v /docker/mysql/conf/:/etc/mysql/conf.d-v /docker/mysql/data/:/var/lib/mysql/-e MYSQL_ROOT_PASSWORD=123456--name mysql mysql 配置mysql配置文件在/docker/mysql/conf下新增my.cnf文件 添加以下配置123[mysqld]default-authentication-plugin = mysql_native_passwordskip-name-resolve 配置说明： default-authentication-plugin由于mysql8.0默认的密码加密方式是 caching_sha2_password，而目前大多数人使用的navicat版本是不支持的，因此需要在docker启动mysql的时候指定挂载服务器主机的my.cnf配置文件，在[mysqld] 下需要添加以下配置：default-authentication-plugin = mysql_native_password网上看有人直接进到mysql容器修改user表下root用户的plugin（加密方式），这方法是行不通的，服务器会拒绝连接。 skip-name-resolvemysql日志显示[Warning] IP address ‘xxxx’ could not be resolved: Name or service not known，那是因为mysql默认会反向解析DNS，对于访问者Mysql不会判断是hosts还是ip都会进行dns反向解析，频繁地查询数据库和权限检查，这大大增加了数据库的压力，导致数据库连接缓慢，严重的时候甚至死机，出现“连接数据库时出错”等字样。解决办法：禁用dns反查即可进入/etc 找到mysql的配置文件my.cnf（linux环境下）或者my.ini(windows环境下)进行编辑加入如下一行即可：12[mysqld]skip-name-resolve]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[docker下安装redis]]></title>
     <url>%2F2018%2F10%2F05%2Fdocker_install_redis%2F</url>
     <content type="text"><![CDATA[执行命令即可12345docker run -d --restart=always -p 6379:6379-v /docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /docker/redis/data:/data--name redis redis:latest redis-server /etc/redis/redis.conf--appendonly yes --requirepass &quot;12345678&quot; 声明为需要密码访问的redis 配置requirepass参数]]></content>
@@ -88,14 +86,16 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Centos 下安装docker]]></title>
-    <url>%2F2018%2F10%2F05%2Fdocker_install%2F</url>
-    <content type="text"><![CDATA[docker 介绍 Docker 让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，便可以实现虚拟化。Docker改变了虚拟化的方式，使开发者可以直接将自己的成果放入Docker中进行管理。方便快捷已经是 Docker的最大优势，过去需要用数天乃至数周的 任务，在Docker容器的处理下，只需要数秒就能完成。 Web 应用的自动化打包和发布。 自动化测试和持续集成、发布。 在服务型环境中部署和调整数据库或其他的后台应用。 安装说明 Docker 要求 CentOS 系统的内核版本高于 3.10 ，查看本页面的前提条件来验证你的CentOS 版本是否支持 Docker 。 通过 uname -r 命令查看你当前的内核版本1uname -r 使用 root 权限登录 Centos。确保 yum 包更新到最新。1yum update 卸载旧版本(如果安装过旧版本的话)1yum remove docker docker-common docker-selinux docker-engine 安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的1yum install -y yum-utils device-mapper-persistent-data lvm2 设置yum源1yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo 安装docker1yum install docker-ce 启动并加入开机启动12systemctl start dockersystemctl enable docker 验证安装是否成功(有client和service两部分表示docker安装启动都成功了)1docker version]]></content>
+    <title><![CDATA[jenkins maven构建时报错]]></title>
+    <url>%2F2018%2F10%2F05%2Fdocker_error%2F</url>
+    <content type="text"><![CDATA[构建错误提示maven docker 报错 1234567 Thin Pool has 0 free data blocks which is less than minimum required 163840 free data blocks. Create more free space in thin pool or use dm.min_free_space option to change behavior.See ‘/usr/bin/docker-current run --help‘.``` 运行下面三个命令：// 注意，以下三个命令执行时可能出错是正常的。清理exited进程： docker rm $(docker ps -q -f status=exited)12清理dangling volumes： docker volume rm $(docker volume ls -qf dangling=true)12清理dangling image： docker rmi $(docker images –filter “dangling=true” -q –no-trunc)` 以上命令，可能是dockerhost 磁盘满了，可使用docker info 查看docker 使用情况，如果不是dockerhost 可能是registry满了，都必须检查，不然会一直构建失败，相关联的docker机器都得检查下。]]></content>
       <categories>
         <category>笔记</category>
       </categories>
       <tags>
         <tag>docker</tag>
+        <tag>jenkins</tag>
+        <tag>maven</tag>
       </tags>
   </entry>
   <entry>
@@ -228,8 +228,8 @@
         <category>分布式</category>
       </categories>
       <tags>
-        <tag>分布式</tag>
         <tag>elasticsearch-插件</tag>
+        <tag>分布式</tag>
       </tags>
   </entry>
   <entry>
@@ -279,8 +279,8 @@
         <category>分布式</category>
       </categories>
       <tags>
-        <tag>elasticsearch</tag>
         <tag>分布式</tag>
+        <tag>elasticsearch</tag>
       </tags>
   </entry>
   <entry>
@@ -411,14 +411,14 @@
     <content type="text"><![CDATA[]]></content>
   </entry>
   <entry>
-    <title><![CDATA[分类]]></title>
-    <url>%2Fcategories%2Findex.html</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
     <title><![CDATA[关于我]]></title>
     <url>%2Fabout%2Findex.html</url>
     <content type="text"><![CDATA[王文辉 一个对技术充满好奇的小伙子 涉世未深，有着洞察世界的眼 涉猎了很多程序相关的书籍，喜欢一个人做研究与思考 but…..我更想和别人分享和交流想法…..特别是你…..come on 目前Status 在一家初创公司 做Java开发 每一次完成公司的需求都会有很大的成就感 感觉在学习 不是在工作 Working is Study Working is Study Study is working 过去学习过C++,C#,汇编语言，外挂制作，反编译等。曾经对技术的热爱，你无法想象 。 未来better than present]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[分类]]></title>
+    <url>%2Fcategories%2Findex.html</url>
+    <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[tags]]></title>
