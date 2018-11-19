@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="赋予文件夹权限12345678910chown -R 1000 //docker/jenkins/jenkins_homechown -R 1000 /data/maven_reptchown -R 1000 /data/apache-maven-3.5.2chown -R 1000 ~/.ssh```    如果没有权限，则jenkins在构建时会出错，ssh 是方便jenkins使用ssh连">
+<meta name="description" content="赋予文件夹权限如果没有权限，则jenkins在构建时会出错，ssh 是方便jenkins使用ssh连接其他机器。   12345678chown -R 1000 //docker/jenkins/jenkins_homechown -R 1000 /data/maven_reptchown -R 1000 /data/apache-maven-3.5.2chown -R 1000 ~/.ssh`">
 <meta name="keywords" content="docker,jenkins">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker下安装jenkins">
 <meta property="og:url" content="https://wenthywang.cn/2018/11/18/docker_install_jenkins/index.html">
 <meta property="og:site_name" content="wenthywang">
-<meta property="og:description" content="赋予文件夹权限12345678910chown -R 1000 //docker/jenkins/jenkins_homechown -R 1000 /data/maven_reptchown -R 1000 /data/apache-maven-3.5.2chown -R 1000 ~/.ssh```    如果没有权限，则jenkins在构建时会出错，ssh 是方便jenkins使用ssh连">
+<meta property="og:description" content="赋予文件夹权限如果没有权限，则jenkins在构建时会出错，ssh 是方便jenkins使用ssh连接其他机器。   12345678chown -R 1000 //docker/jenkins/jenkins_homechown -R 1000 /data/maven_reptchown -R 1000 /data/apache-maven-3.5.2chown -R 1000 ~/.ssh`">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-19T08:53:55.094Z">
+<meta property="og:updated_time" content="2018-11-19T08:55:39.645Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker下安装jenkins">
-<meta name="twitter:description" content="赋予文件夹权限12345678910chown -R 1000 //docker/jenkins/jenkins_homechown -R 1000 /data/maven_reptchown -R 1000 /data/apache-maven-3.5.2chown -R 1000 ~/.ssh```    如果没有权限，则jenkins在构建时会出错，ssh 是方便jenkins使用ssh连">
+<meta name="twitter:description" content="赋予文件夹权限如果没有权限，则jenkins在构建时会出错，ssh 是方便jenkins使用ssh连接其他机器。   12345678chown -R 1000 //docker/jenkins/jenkins_homechown -R 1000 /data/maven_reptchown -R 1000 /data/apache-maven-3.5.2chown -R 1000 ~/.ssh`">
 
 
 
@@ -422,7 +422,8 @@
 
       
         <hr>
-<h1 id="赋予文件夹权限"><a href="#赋予文件夹权限" class="headerlink" title="赋予文件夹权限"></a>赋予文件夹权限</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">chown -R 1000 //docker/jenkins/jenkins_home</span><br><span class="line">chown -R 1000 /data/maven_rept</span><br><span class="line">chown -R 1000 /data/apache-maven-3.5.2</span><br><span class="line">chown -R 1000 ~/.ssh</span><br><span class="line">```    </span><br><span class="line"></span><br><span class="line">如果没有权限，则jenkins在构建时会出错，ssh 是方便jenkins使用ssh连接其他机器。  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># docker jenkins 运行命令</span><br></pre></td></tr></table></figure>
+<h1 id="赋予文件夹权限"><a href="#赋予文件夹权限" class="headerlink" title="赋予文件夹权限"></a>赋予文件夹权限</h1><p>如果没有权限，则jenkins在构建时会出错，ssh 是方便jenkins使用ssh连接其他机器。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">chown -R 1000 //docker/jenkins/jenkins_home</span><br><span class="line">chown -R 1000 /data/maven_rept</span><br><span class="line">chown -R 1000 /data/apache-maven-3.5.2</span><br><span class="line">chown -R 1000 ~/.ssh</span><br><span class="line">```    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># docker jenkins 运行命令</span><br></pre></td></tr></table></figure>
 <p>docker run  –restart=always –name jenkins -p 8080:8080 -p 50000:50000 \<br>    -v /docker/jenkins/jenkins_home:/var/jenkins_home \<br>   -v /etc/localtime:/etc/localtime \<br>    -v /etc/timezone:/etc/timezone \<br>   -v /data/apache-maven-3.5.2:/data/apache-maven-3.5.2 \<br>   -v /data/maven_rept:/data/maven_rept \<br>    -v ~/.ssh:/var/jenkins_home/.ssh \<br>    -d  docker.io/jenkins/jenkins<br><code>`</code></p>
 
       

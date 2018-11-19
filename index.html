@@ -576,7 +576,8 @@
         
           
           
-赋予文件夹权限12345678910chown -R 1000 //docker/jenkins/jenkins_homechown -R 1000 /data/maven_reptchown -R 1000 /data/apache-maven-3.5.2chown -R 1000 ~/.ssh
+赋予文件夹权限如果没有权限，则jenkins在构建时会出错，ssh 是方便jenkins使用ssh连接其他机器。  
+12345678chown -R 1000 //docker/jenkins/jenkins_homechown -R 1000 /data/maven_reptchown -R 
           ...
           <!--noindex-->
           <div class="post-button text-center">
